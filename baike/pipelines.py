@@ -19,7 +19,13 @@ class BaikePipeline(object):
                 )
 
     def process_item(self, item, spider):
-        os.path.join(self.savedir, item['itemid'])
-        
-        return item
+        filename = os.path.join(self.savedir, item['itemid'])
+
+        meta = {'itemid':item['itemid'], 'itemtype':item['itemtype'],
+                'url':item['url'], 'anchor':item['anchor']}
+
+        with open(filename, 'wb') as f:
+            f.write(json.dumps(meta) + "\n")
+            f.write(item['body'])
+            f.close()
 

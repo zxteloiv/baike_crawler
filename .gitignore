@@ -67,3 +67,7 @@ target/
 *.out
 log
 run
+*.html
+*.htm
+*.js
+*.css
