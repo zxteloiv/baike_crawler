@@ -20,14 +20,9 @@ class BaikeSpider(scrapy.Spider):
 
     def parse(self, response):
         # save data
-        if not self.is_error(response):
-            item = self.parse_page(response)
-            if item is not None:
-                yield item
-        else:
-            savedir = self.settings.get("BAIKE_HTML_SAVE_DIR", default=".")
-            with open(os.path.join(savedir, "log.err"), "a") as f:
-                f.write("error\t" + response.url + "\n")
+        item = self.parse_page(response)
+        if item is not None:
+            yield item
 
         # follow links
         for link in response.xpath("//a[@href]"):
@@ -55,6 +50,12 @@ class BaikeSpider(scrapy.Spider):
             itemid = "_".join(re.search('(\d+)', x).group(1) for x in urlparts[-2:]) + ".htm"
             itemtype = 'subview'
         else:
+            return None
+
+        if self.is_error(response):
+            savedir = self.settings.get("BAIKE_HTML_SAVE_DIR", default=".")
+            with open(os.path.join(savedir, "log.err"), "a") as f:
+                f.write("error\t" + response.url + "\n")
             return None
 
         item = BaikeItem()
