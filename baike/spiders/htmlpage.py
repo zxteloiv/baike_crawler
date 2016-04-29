@@ -8,7 +8,6 @@ class BaikeSpider(scrapy.Spider):
     name = "baike"
     allowed_domains = ["baike.baidu.com"]
     start_urls = (
-        "http://baike.baidu.com/view/20069.html?fromTaglist",
         "http://baike.baidu.com/view/486340.htm",
         "http://baike.baidu.com/taglist?tag=%BE%B0%B5%E3",
         "http://baike.baidu.com/dili",
@@ -34,7 +33,7 @@ class BaikeSpider(scrapy.Spider):
             anchor_text = anchor[0].strip() if len(anchor) > 0 else ""
 
             url = response.urljoin(href)
-            if any(x in url for x in ("/view/", '/subview/', 'taglist')):
+            if any(x in url for x in ("htm", 'taglist')):
                 meta = {"anchor_text":anchor_text}
                 yield scrapy.Request(url, callback=self.parse, meta=meta)
 
