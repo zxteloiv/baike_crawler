@@ -29,3 +29,7 @@ class BaikePipeline(object):
             f.write(item['body'])
             f.close()
 
+        return "crawled: " + item['url']
+        
+
+
