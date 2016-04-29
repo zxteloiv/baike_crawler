@@ -11,4 +11,10 @@ import scrapy
 class BaikeItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    itemid = scrapy.Field()
+    itemtype = scrapy.Field()
+    url = scrapy.Field()
+    anchor = scrapy.Field()
+    body = scrapy.Field()
+
+
