@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cd /home/zxteloiv/codes/baike_crawler
+source env/bin/activate
+
 rotatedir=html$(date +%Y%m%d%H%M)
 cd /home/zxteloiv/codes/baike_crawler/data/ 
 
