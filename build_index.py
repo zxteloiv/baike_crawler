@@ -14,7 +14,7 @@ def index_dir(path, r):
     path = re.sub(os.path.sep + '$', '', path)
     files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
     for f in files:
-        key, val = f, os.path.split(path)[-1]
+        key, val = f, os.path.join(os.path.split(path)[-1], f)
         print "set", key, val
         r.set(key, val)
 
