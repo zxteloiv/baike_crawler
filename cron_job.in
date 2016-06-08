@@ -1,0 +1,2 @@
+#*/30 * * * * cd /home/zxteloiv/codes/baike_crawler/data/ && bash cron.sh &>> /home/zxteloiv/codes/baike_crawler/data/log.cron
+2,32 * * * * cd /home/zxteloiv/datasets/baike-crawl && bash count.sh >> log.stat 2>/dev/null
